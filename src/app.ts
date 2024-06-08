@@ -1,6 +1,8 @@
 import express from  'express'
 import path from 'path';
 import router from './router'
+import routerAdmin from './routerAdmin';
+
 
 // 1- qism entrance
 
@@ -18,6 +20,7 @@ app.set('view engine', 'ejs')
 
 // 4- ROUTERS
 
-app.use('/', router)   //middle ware 
+app.use('/admin', routerAdmin) //ssr: ejs           //middle ware 
+app.use('/', router) // SPA: REACT          //middle ware 
 
 export default app
