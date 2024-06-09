@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
 import {T} from '../lips/types/common';
+import MemberService from 'src/models/Member.service';
 
 
 const restaurantController : T = {}; 
