@@ -1,4 +1,4 @@
-function getDigits(numbers) {
+function getDigits(numbers: any) {
     let result = '';
     for (let i = 0; i < numbers.length; i++) {
         if (!isNaN(numbers[i]) && numbers[i] !== ' ') {
