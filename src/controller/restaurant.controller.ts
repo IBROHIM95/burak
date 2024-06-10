@@ -6,6 +6,8 @@ import {T} from '../lips/types/common';
 const restaurantController : T = {}; 
 restaurantController.goHome = (req:Request, res:Response) => {
     try{
+        console.log('go home');
+        
         res.send('Home page')
     } catch(err) {
         console.log('Error, goHome', err);

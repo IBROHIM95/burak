@@ -8,3 +8,15 @@ function getDigits(numbers: any) {
    return result;
 }
 console.log(getDigits("m14i1t")); 
+
+/* Project Standarts:
+-Logging standarts
+Naming standarts:
+   function, method, variable => CAMEL
+   class => PASCAL
+   folder => KEBAB
+   CSS => SNAKE
+ - ERRORS HANDLING   
+
+
+*/
