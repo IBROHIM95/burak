@@ -1,5 +1,8 @@
 import express, {Request, Response} from 'express';
 import {T} from '../lips/types/common';
+import { MemberInput } from '../lips/types/member';
+import { MemberType } from '../lips/enum/member.enum';
+import MemberService from '../models/Member.service';
 
 
 
@@ -47,13 +50,22 @@ restaurantController.processLogin = (req:Request, res:Response) => {
 };
 
 
-restaurantController.processSignup = (req:Request, res:Response) => {
+restaurantController.processSignup = async (req:Request, res:Response) => {
     try{
-        console.log('processSingup page');
+        console.log('processSignup page');
+        console.log('body', req.body);
+
+        const newMember: MemberInput = req.body;
+        newMember.memberType = MemberType.RESTAURANT;
         
-        res.send('done')
+        const memberService = new MemberService();
+        const result = await memberService.processSignup(newMember)
+        
+        
+        
+        res.send(result)
     } catch(err) {
-        console.log('Error, processSingup', err);
+        res.send(err);
         
     }
     

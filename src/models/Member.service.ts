@@ -1,6 +1,32 @@
-class MemberService {
-    constructor(){
+import MemberModel from "../scheme/Member.model"
+import { Member, MemberInput } from "../lips/types/member"
+import Errors, { Message } from "../lips/Errors";
+import { HttpCode } from "../lips/Errors";
+import { MemberType } from "../lips/enum/member.enum";
 
+class MemberService {
+    private readonly memberModel
+    constructor(){
+        this.memberModel = MemberModel
+    }
+     
+    public async processSignup(input: MemberInput): Promise<Member> {
+        
+        const exist = await this.memberModel.findOne({memberType: MemberType.RESTAURANT})
+        .exec();
+        console.log('exist:', exist);
+        
+        if(exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)
+    
+        try{
+            const result = await this.memberModel.create(input);
+            return result
+        } catch(err) {
+           throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)
+        }
+
+    
+        
     }
 }
 
