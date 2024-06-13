@@ -11,7 +11,7 @@ routerAdmin
 
 routerAdmin
 .get('/signup',restaurantController.getSignup )
-.post('/signup/process', restaurantController.processSignup);
+.post('/signup', restaurantController.processSignup);
 
 /*  Products */
 
