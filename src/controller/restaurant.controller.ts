@@ -29,7 +29,7 @@ restaurantController.getLogin = (req:Request, res:Response) => {
 };
 restaurantController.getSignup = (req:Request, res:Response) => {
     try{
-        res.send('Signup page')
+        res.send('DONE')
     } catch(err) {
         console.log('Error, getSignup', err);
         
@@ -60,8 +60,6 @@ restaurantController.processSignup = async (req:Request, res:Response) => {
         
         const memberService = new MemberService();
         const result = await memberService.processSignup(newMember)
-        
-        
         
         res.send(result)
     } catch(err) {
