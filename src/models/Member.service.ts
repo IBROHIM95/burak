@@ -3,6 +3,7 @@ import { LoginInput, Member, MemberInput } from "../lips/types/member"
 import Errors, { Message } from "../lips/Errors";
 import { HttpCode } from "../lips/Errors";
 import { MemberType } from "../lips/enum/member.enum";
+import * as bcrypt from 'bcryptjs'
 
 class MemberService {
     private readonly memberModel;
@@ -17,6 +18,13 @@ class MemberService {
         .exec();
         if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED)
     
+        console.log('before:', input.memberPassword);
+        const salt = await bcrypt.genSalt();
+        input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
+        console.log('after:', input.memberPassword);
+        
+        
+
         try{
             const result = await this.memberModel.create(input);
             result.memberPassword = "";
@@ -35,11 +43,15 @@ class MemberService {
        .exec();
        if(!member) throw new Errors(HttpCode.NOT_FOUNT, Message.NO_MEMBER_NICK)
        
-       const isMatch = input.memberPassword === member.memberPassword;
+       const isMatch = await bcrypt.compare(
+        input.memberPassword, 
+        member.memberPassword
+       ) 
+
        if(!isMatch) {
         throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD)
        }
-       
+
        return await this.memberModel.findById(member._id).exec();
        
        
