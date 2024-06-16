@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {T} from '../lips/types/common';
-import { MemberInput } from '../lips/types/member';
+import { LoginInput, MemberInput } from '../lips/types/member';
 import { MemberType } from '../lips/enum/member.enum';
 import MemberService from '../models/Member.service';
 
@@ -37,13 +37,20 @@ restaurantController.getSignup = (req:Request, res:Response) => {
     
 };
 
-restaurantController.processLogin = (req:Request, res:Response) => {
+restaurantController.processLogin = async (req:Request, res:Response) => {
     try{
-        console.log('processLogin page');
+        console.log('processLogin');
+        console.log('body:', req.body);
+        const input : LoginInput = req.body;
         
-        res.send('done')
+        const memberService = new MemberService();
+        const result = await memberService.processLogin(input)
+        
+        
+        res.send(result)
     } catch(err) {
         console.log('Error, processLogin', err);
+        res.send(err)
         
     }
     
