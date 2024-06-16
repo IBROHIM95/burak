@@ -20,3 +20,24 @@ Naming standarts:
 
 
 */
+
+function majorityElement(nums: number[]): number | null {
+   
+    const counts: { [key: number]: number } = {};
+    for (let result of nums) {
+        counts[result] = (counts[result] || 0) + 1;
+    }
+    let maxCount = 0;
+    let findElement: number | null = null;
+
+    for (let result in counts) {
+        if (counts[result] > maxCount) {
+            maxCount = counts[result];
+            findElement = parseInt(result);
+        }
+    }  
+    return findElement;
+}
+console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
+
+
