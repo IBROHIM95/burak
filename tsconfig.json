@@ -13,6 +13,6 @@
         }
 
     },
-    "include": ["src/**/*.ts", "src/train.js"],
+    "include": ["src/**/*.ts", "src/train.js", "src/server.tssrc/train.tsn.tssrc/routerAdmin.tsn.ts", "router.ts", "app.ts"],
     "exclude": ["node_modules"]
 }

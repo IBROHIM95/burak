@@ -3,7 +3,7 @@ import path from 'path';
 import router from './router'
 import routerAdmin from './routerAdmin';
 import morgan from 'morgan';
-import { MORGAN_FORMAT } from './lips/config';
+import { MORGAN_FORMAT } from '../src/lips/config';
 
 
 // 1- qism entrance
