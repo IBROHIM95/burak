@@ -16,7 +16,11 @@ Naming standarts:
    class => PASCAL
    folder => KEBAB
    CSS => SNAKE
- - ERRORS HANDLING   
+ - ERRORS HANDLING  
+ 
+ 
+  Traditional FD => BSSR(ADMIN) => EJS
+  Modern FD      => SPA =>  REACT
 
 
 */
