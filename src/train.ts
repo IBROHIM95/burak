@@ -45,3 +45,20 @@ function majorityElement(nums: number[]): number | null {
 console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 
 
+
+
+function find_longest_word(str:any) : any
+{
+  let array1 = str.match(/\w[a-z]{0,}/gi);
+  let result = array1[0];
+
+  for(var x = 1 ; x < array1.length ; x++)
+  {
+    if(result.length < array1[x].length)
+    {
+    result = array1[x];
+    } 
+  }
+  return result;
+}
+console.log(find_longest_word('Men come from Uzbekistan'));
