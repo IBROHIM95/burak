@@ -65,7 +65,7 @@ Naming standarts:
 
 
 function countVowels(letters: string): number {
-  const result: string = "aeiouAEIOU";
+  const result: string = "asdasdasd";
   let count: number = 0;
   for (let i = 0; i < letters.length; i++) {
       if (result.indexOf(letters[i]) !== -1) {
