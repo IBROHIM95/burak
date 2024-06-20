@@ -3,6 +3,7 @@ import {T} from '../lips/types/common';
 import { LoginInput, MemberInput, AdminRequest } from '../lips/types/member';
 import { MemberType } from '../lips/enum/member.enum';
 import MemberService from '../models/Member.service';
+import { Message } from '../lips/Errors';
 
 const memberService = new MemberService();
 
@@ -48,7 +49,7 @@ restaurantController.processSignup = async (req:AdminRequest, res:Response) => {
         const newMember: MemberInput = req.body;
         newMember.memberType = MemberType.RESTAURANT;
         const result = await memberService.processSignup(newMember);
-        //SESSION
+        
 
         req.session.member = result;
         req.session.save(function () {
@@ -69,20 +70,31 @@ restaurantController.processLogin = async (req:AdminRequest, res:Response) => {
         console.log('body:', req.body);
         const input : LoginInput = req.body;
         const result = await memberService.processLogin(input)
-        //SESSION
+       
         
         req.session.member = result;
         req.session.save(function () {
             res.send(result) 
         })
-
-        
+             
     } catch(err) {
         console.log('Error, processLogin', err);
-        res.send(err)
-        
-    }
-    
+        res.send(err)   
+    }   
+};
+
+restaurantController.checkAuthSession = async (
+    req:AdminRequest, 
+    res:Response) => {
+    try{
+        console.log('checkAuthSession');
+        if(req.session?.member) 
+        res.send(` <script> alert("${req.session.member.memberNick}")</script> `);
+        else res.send(  ` <script> alert("${Message.NOT_AUTHENTICATED}")</script> `);
+    } catch(err) {
+        console.log('Error, processLogin', err);
+        res.send(err)   
+    }   
 };
 
 
