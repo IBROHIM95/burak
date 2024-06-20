@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {T} from '../lips/types/common';
-import { LoginInput, MemberInput } from '../lips/types/member';
+import { LoginInput, MemberInput, AdminRequest } from '../lips/types/member';
 import { MemberType } from '../lips/enum/member.enum';
 import MemberService from '../models/Member.service';
 
@@ -40,7 +40,7 @@ restaurantController.getLogin = (req:Request, res:Response) => {
 };
 
 
-restaurantController.processSignup = async (req:Request, res:Response) => {
+restaurantController.processSignup = async (req:AdminRequest, res:Response) => {
     try{
         console.log('processSignup page');
         console.log('body', req.body);
@@ -49,8 +49,13 @@ restaurantController.processSignup = async (req:Request, res:Response) => {
         newMember.memberType = MemberType.RESTAURANT;
         const result = await memberService.processSignup(newMember);
         //SESSION
+
+        req.session.member = result;
+        req.session.save(function () {
+            res.send(result) 
+        })
         
-        res.send(result)
+       
     } catch(err) {
         res.send(err);
         
@@ -58,7 +63,7 @@ restaurantController.processSignup = async (req:Request, res:Response) => {
     
 };
 
-restaurantController.processLogin = async (req:Request, res:Response) => {
+restaurantController.processLogin = async (req:AdminRequest, res:Response) => {
     try{
         console.log('processLogin');
         console.log('body:', req.body);
@@ -66,7 +71,12 @@ restaurantController.processLogin = async (req:Request, res:Response) => {
         const result = await memberService.processLogin(input)
         //SESSION
         
-        res.send(result)
+        req.session.member = result;
+        req.session.save(function () {
+            res.send(result) 
+        })
+
+        
     } catch(err) {
         console.log('Error, processLogin', err);
         res.send(err)
