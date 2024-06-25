@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express, {NextFunction, Request, Response} from 'express';
 import {T} from '../lips/types/common';
 import { LoginInput, MemberInput, AdminRequest } from '../lips/types/member';
 import { MemberType } from '../lips/enum/member.enum';
@@ -108,6 +108,20 @@ restaurantController.checkAuthSession = async (
     } catch(err) {
         console.log('Error, processLogin', err);
         res.send(err)   
+    }   
+};
+restaurantController.verifyRestaurant =  (
+    req:AdminRequest, 
+    res:Response,
+    next: NextFunction
+) => {
+    
+       if(req.session?.member?.memberType === MemberType.RESTAURANT){
+          req.member = req.session.member;
+        next();
+       }else {
+        const message = Message.NOT_AUTHENTICATED
+        res.send( ` <script> alert("${message}"); window.location.replace('/admin/login')</script> `)
     }   
 };
 
