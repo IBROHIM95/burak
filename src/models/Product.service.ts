@@ -1,7 +1,8 @@
 import Errors, { HttpCode } from "../lips/Errors"
-import { Product, ProductInput } from "../lips/types/product"
+import { Product, ProductInput, ProductUpdateInput } from "../lips/types/product"
 import ProductModel from "../scheme/Product.model"
 import { Message } from "../lips/Errors"
+import { shapeIntMongooseObjectId } from "../lips/config"
 
 class ProductService{
 private readonly productModel
@@ -23,6 +24,20 @@ public async createNewProduct(input: ProductInput): Promise<Product>{
     
    } 
 }
+
+public async updateChosenProduct(
+    id: string,
+    input: ProductUpdateInput): Promise<Product>{
+    id = shapeIntMongooseObjectId(id);
+    const result = await this.productModel
+    .findOneAndUpdate({_id: id}, input, {new:true})
+    .exec();
+    if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED)
+   
+    return result
+    
 }
+}
+
 
 export default ProductService
