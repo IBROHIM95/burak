@@ -1,7 +1,7 @@
 import express, {Request, Response} from 'express';
 import Errors from "../lips/Errors";
 import { T } from "../lips/types/common";
-import ProductService from '../models/Product.member';
+import ProductService from '../models/Product.service';
 import { AdminRequest } from '../lips/types/member';
 
 const productService = new ProductService
