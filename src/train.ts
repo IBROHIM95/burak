@@ -61,14 +61,33 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // console.log(find_longest_word('Men come from Uzbekistan'));
 
 
-function countVowels(letters: string): number {
-  const result: string = "asdasdasd";
-  let count: number = 0;
-  for (let i = 0; i < letters.length; i++) {
-      if (result.indexOf(letters[i]) !== -1) {
-          count++;
-      }
-  }
-  return count;
+// function countVowels(letters: string): number {
+//   const result: string = "aeiouAEIOU";
+//   let count: number = 0;
+//   for (let i = 0; i < letters.length; i++) {
+//       if (result.indexOf(letters[i]) !== -1) {
+//           count++;
+//       }
+//   }
+//   return count;
+// }
+
+function reverseSentence(sentence: string): string {
+    const words = sentence.split(' ');
+    const reversedWords = words.map(word => word.split('').reverse().join(''));
+    return reversedWords.join(' ');
 }
+const results = reverseSentence("git hub problems");
+console.log(results); 
+
+
+
+
+
+function getSquareNumbers(numbers: number[]): { number: number, square: number }[] {
+    return numbers.map(num => ({ number: num, square: num * num }));
+}
+const result = getSquareNumbers([1, 2, 3]);
+console.log(result); 
+
 
