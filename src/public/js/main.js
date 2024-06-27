@@ -1,1 +1,1 @@
-console.log('hello world');
+console.log("Basic frontend javascript file");

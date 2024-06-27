@@ -1,7 +1,7 @@
-body{
-    background-color: rgb(55, 226, 146);
-}
-
-format1{
-    font-size: large;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }
