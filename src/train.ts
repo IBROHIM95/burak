@@ -98,6 +98,9 @@ function palindromCheck(str: string): boolean {
 console.log(palindromCheck("dad")); // true
 console.log(palindromCheck("hoh")); // true
 console.log(palindromCheck("son")); // false
+console.log(palindromCheck("dad")); // true
+console.log(palindromCheck("hoh")); // true
+console.log(palindromCheck("son")); // false
 
 
 
