@@ -1,9 +1,10 @@
 import MemberModel from "../scheme/Member.model"
-import { LoginInput, Member, MemberInput } from "../lips/types/member"
+import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../lips/types/member"
 import Errors, { Message } from "../lips/Errors";
 import { HttpCode } from "../lips/Errors";
 import { MemberType } from "../lips/enum/member.enum";
 import * as bcrypt from 'bcryptjs'
+import { shapeIntMongooseObjectId } from "../lips/config";
 
 class MemberService {
     private readonly memberModel;
@@ -106,6 +107,17 @@ class MemberService {
        .find({memberType: MemberType.USER})
        .exec();
      if(!result) throw new Errors(HttpCode.NOT_FOUNT, Message.NO_DATA_FOUND);
+     console.log( 'result::', result);
+     
+     return result
+    }
+
+    public async updateChosenUser(input: MemberUpdateInput): Promise<Member[]> {
+       input._id = shapeIntMongooseObjectId(input._id)
+        const result = await this.memberModel
+       .findByIdAndUpdate({_id: input._id}, input, {new: true})
+       .exec();
+     if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
      console.log( 'result::', result);
      
      return result
