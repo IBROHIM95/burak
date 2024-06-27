@@ -72,22 +72,33 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 //   return count;
 // }
 
-function reverseSentence(sentence: string): string {
-    const words = sentence.split(' ');
-    const reversedWords = words.map(word => word.split('').reverse().join(''));
-    return reversedWords.join(' ');
+// function reverseSentence(sentence: string): string {
+//     const words = sentence.split(' ');
+//     const reversedWords = words.map(word => word.split('').reverse().join(''));
+//     return reversedWords.join(' ');
+// }
+// const results = reverseSentence("git hub problems");
+// console.log(results); 
+
+
+
+
+
+// function getSquareNumbers(numbers: number[]): { number: number, square: number }[] {
+//     return numbers.map(num => ({ number: num, square: num * num }));
+// }
+// const result = getSquareNumbers([1, 2, 3]);
+// console.log(result); 
+
+function palindromCheck(str: string): boolean { 
+    const change = str.replace(/\s+/g, '');   
+    const result = change.split('').reverse().join('');    
+    return change === result;
 }
-const results = reverseSentence("git hub problems");
-console.log(results); 
+console.log(palindromCheck("dad")); // true
+console.log(palindromCheck("hoh")); // true
+console.log(palindromCheck("son")); // false
 
 
-
-
-
-function getSquareNumbers(numbers: number[]): { number: number, square: number }[] {
-    return numbers.map(num => ({ number: num, square: num * num }));
-}
-const result = getSquareNumbers([1, 2, 3]);
-console.log(result); 
 
 
