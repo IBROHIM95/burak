@@ -102,6 +102,19 @@ console.log(palindromCheck("dad")); // true
 console.log(palindromCheck("hoh")); // true
 console.log(palindromCheck("son")); // false
 
+function calculateSumOfNumbers(result: any[]): number {
+    return result.reduce((sum, item) => {
+        if (typeof item === 'number') {
+            return sum + item;
+        }
+        return sum;
+    }, 0);
+}
+
+const result = calculateSumOfNumbers([10, "10", {son: 10}, true, 35]);
+console.log(result); // 45
+
+
 
 
 
