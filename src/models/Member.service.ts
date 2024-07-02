@@ -2,7 +2,7 @@ import MemberModel from "../scheme/Member.model"
 import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../lips/types/member"
 import Errors, { Message } from "../lips/Errors";
 import { HttpCode } from "../lips/Errors";
-import { MemberType } from "../lips/enum/member.enum";
+import { MemberStatus, MemberType } from "../lips/enum/member.enum";
 import * as bcrypt from 'bcryptjs'
 import { shapeIntMongooseObjectId } from "../lips/config";
 
@@ -34,11 +34,15 @@ class MemberService {
         //TODO Consider member status later
        const member = await this.memberModel 
        .findOne(
-        {memberNick: input.memberNick},
-         {memberNick: 1, memberPassword: 1} //kerak bo'lsa bir, kerak bo'lmasa nol
+        {memberNick: input.memberNick,
+         memberStatus : {$ne: MemberStatus.DELETE}
+        },
+         {memberNick: 1, memberPassword: 1,  memberStatus: 1,} //kerak bo'lsa bir, kerak bo'lmasa nol
        )
        .exec();
        if(!member) throw new Errors(HttpCode.NOT_FOUNT, Message.NO_MEMBER_NICK)
+        else if(member.memberStatus === MemberStatus.BLOCK){
+          throw  new Errors(HttpCode.FORBIDDEN, Message.BLOCKED_USER)}
        
        const isMatch = await bcrypt.compare(
         input.memberPassword, 
