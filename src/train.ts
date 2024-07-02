@@ -90,29 +90,38 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // const result = getSquareNumbers([1, 2, 3]);
 // console.log(result); 
 
-function palindromCheck(str: string): boolean { 
-    const change = str.replace(/\s+/g, '');   
-    const result = change.split('').reverse().join('');    
-    return change === result;
-}
-console.log(palindromCheck("dad")); // true
-console.log(palindromCheck("hoh")); // true
-console.log(palindromCheck("son")); // false
-console.log(palindromCheck("dad")); // true
-console.log(palindromCheck("hoh")); // true
-console.log(palindromCheck("son")); // false
+// function palindromCheck(str: string): boolean { 
+//     const change = str.replace(/\s+/g, '');   
+//     const result = change.split('').reverse().join('');    
+//     return change === result;
+// }
+// console.log(palindromCheck("dad")); // true
+// console.log(palindromCheck("hoh")); // true
+// console.log(palindromCheck("son")); // false
+// console.log(palindromCheck("dad")); // true
+// console.log(palindromCheck("hoh")); // true
+// console.log(palindromCheck("son")); // false
 
-function calculateSumOfNumbers(result: any[]): number {
-    return result.reduce((sum, item) => {
-        if (typeof item === 'number') {
-            return sum + item;
-        }
-        return sum;
-    }, 0);
-}
+// function calculateSumOfNumbers(result: any[]): number {
+//     return result.reduce((sum, item) => {
+//         if (typeof item === 'number') {
+//             return sum + item;
+//         }
+//         return sum;
+//     }, 0);
+// }
 
-const result = calculateSumOfNumbers([10, "10", {son: 10}, true, 35]);
-console.log(result); // 45
+// const result = calculateSumOfNumbers([10, "10", {son: 10}, true, 35]);
+// console.log(result); // 45
+
+
+function objectToArray(obj: Record<string, any>): [string, any][] {
+    return Object.entries(obj);
+}
+const obj = { a: 10, b: 20 };
+const result = objectToArray(obj);
+console.log(result); // [['a', 10], ['b', 20]]
+
 
 
 
