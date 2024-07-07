@@ -115,12 +115,19 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // console.log(result); // 45
 
 
-function objectToArray(obj: Record<string, any>): [string, any][] {
-    return Object.entries(obj);
+// function objectToArray(obj: Record<string, any>): [string, any][] {
+//     return Object.entries(obj);
+// }
+// const obj = { a: 10, b: 20 };
+// const result = objectToArray(obj);
+// console.log(result); // [['a', 10], ['b', 20]]
+
+function hasProperty(obj: Record<string, any>, prop: string): boolean {
+    return obj.hasOwnProperty(prop);
 }
-const obj = { a: 10, b: 20 };
-const result = objectToArray(obj);
-console.log(result); // [['a', 10], ['b', 20]]
+
+console.log(hasProperty({name: "BMW", model: "M3"}, "model")); 
+console.log(hasProperty({name: "BMW", model: "M3"}, "year")); 
 
 
 
