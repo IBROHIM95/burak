@@ -122,12 +122,23 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // const result = objectToArray(obj);
 // console.log(result); // [['a', 10], ['b', 20]]
 
-function hasProperty(obj: Record<string, any>, prop: string): boolean {
-    return obj.hasOwnProperty(prop);
-}
+// function hasProperty(obj: Record<string, any>, prop: string): boolean {
+//     return obj.hasOwnProperty(prop);
+// }
 
-console.log(hasProperty({name: "BMW", model: "M3"}, "model")); 
-console.log(hasProperty({name: "BMW", model: "M3"}, "year")); 
+// console.log(hasProperty({name: "BMW", model: "M3"}, "model")); 
+// console.log(hasProperty({name: "BMW", model: "M3"}, "year")); 
+
+
+function calculate(expression: string): number {
+    const numbers = expression.split('+');
+    const sum = numbers.reduce((acc, current) => acc + parseInt(current, 10), 0);
+    return sum;
+}
+console.log(calculate("1+2")); 
+console.log(calculate("10+20")); 
+console.log(calculate("5+15")); 
+
 
 
 
