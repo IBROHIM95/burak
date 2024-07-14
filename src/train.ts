@@ -130,14 +130,58 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // console.log(hasProperty({name: "BMW", model: "M3"}, "year")); 
 
 
-function calculate(expression: string): number {
-    const numbers = expression.split('+');
-    const sum = numbers.reduce((acc, current) => acc + parseInt(current, 10), 0);
-    return sum;
+// function calculate(expression: string): number {
+//     const numbers = expression.split('+');
+//     const sum = numbers.reduce((acc, current) => acc + parseInt(current, 10), 0);
+//     return sum;
+// }
+// console.log(calculate("1+2")); 
+// console.log(calculate("10+20")); 
+// console.log(calculate("5+15")); 
+
+function missingNumber(nums: number[]): number {
+    const n = nums.length;
+    const expectedSum = (n * (n + 1)) / 2;
+    const actualSum = nums.reduce((sum, num) => sum + num, 0);
+    return expectedSum - actualSum;
 }
-console.log(calculate("1+2")); 
-console.log(calculate("10+20")); 
-console.log(calculate("5+15")); 
+const result = missingNumber([3, 0, 1]);
+console.log(result); 
+
+
+
+
+function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+    let mergedArray: number[] = [];
+    let i = 0;
+    let j = 0;
+    while (i < arr1.length && j < arr2.length) {
+        if (arr1[i] < arr2[j]) {
+            mergedArray.push(arr1[i]);
+            i++;
+        } else {
+            mergedArray.push(arr2[j]);
+            j++;
+        }
+    }
+    while (i < arr1.length) {
+        mergedArray.push(arr1[i]);
+        i++;
+    }
+
+    while (j < arr2.length) {
+        mergedArray.push(arr2[j]);
+        j++;
+    }
+
+    return mergedArray;
+}
+
+
+const result2 = mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
+console.log(result2); 
+
+
 
 
 
