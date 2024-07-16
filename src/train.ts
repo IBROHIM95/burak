@@ -139,49 +139,58 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // console.log(calculate("10+20")); 
 // console.log(calculate("5+15")); 
 
-function missingNumber(nums: number[]): number {
-    const n = nums.length;
-    const expectedSum = (n * (n + 1)) / 2;
-    const actualSum = nums.reduce((sum, num) => sum + num, 0);
-    return expectedSum - actualSum;
+// function missingNumber(nums: number[]): number {
+//     const n = nums.length;
+//     const expectedSum = (n * (n + 1)) / 2;
+//     const actualSum = nums.reduce((sum, num) => sum + num, 0);
+//     return expectedSum - actualSum;
+// }
+// const result = missingNumber([3, 0, 1]);
+// console.log(result); 
+
+
+
+
+// function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
+//     let mergedArray: number[] = [];
+//     let i = 0;
+//     let j = 0;
+//     while (i < arr1.length && j < arr2.length) {
+//         if (arr1[i] < arr2[j]) {
+//             mergedArray.push(arr1[i]);
+//             i++;
+//         } else {
+//             mergedArray.push(arr2[j]);
+//             j++;
+//         }
+//     }
+//     while (i < arr1.length) {
+//         mergedArray.push(arr1[i]);
+//         i++;
+//     }
+
+//     while (j < arr2.length) {
+//         mergedArray.push(arr2[j]);
+//         j++;
+//     }
+
+//     return mergedArray;
+// }
+
+
+// const result2 = mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
+// console.log(result2); 
+
+function sumOdds(n: number): number {
+    let count = 0;
+    for (let i = 1; i <= n; i += 2) {
+        count++;
+    }
+    return count;
 }
-const result = missingNumber([3, 0, 1]);
-console.log(result); 
 
-
-
-
-function mergeSortedArrays(arr1: number[], arr2: number[]): number[] {
-    let mergedArray: number[] = [];
-    let i = 0;
-    let j = 0;
-    while (i < arr1.length && j < arr2.length) {
-        if (arr1[i] < arr2[j]) {
-            mergedArray.push(arr1[i]);
-            i++;
-        } else {
-            mergedArray.push(arr2[j]);
-            j++;
-        }
-    }
-    while (i < arr1.length) {
-        mergedArray.push(arr1[i]);
-        i++;
-    }
-
-    while (j < arr2.length) {
-        mergedArray.push(arr2[j]);
-        j++;
-    }
-
-    return mergedArray;
-}
-
-
-const result2 = mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
-console.log(result2); 
-
-
+console.log(sumOdds(20)); 
+console.log(sumOdds(40)); 
 
 
 
