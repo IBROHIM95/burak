@@ -54,9 +54,16 @@ class MemberService {
        }
 
        return await this.memberModel.findById(member._id).lean().exec();
-       
-       
+         
     }
+
+    public async getMemberDetail (member: Member): Promise<Member> {
+      const memberId = shapeIntMongooseObjectId(member._id);
+      const result = await this.memberModel.findOne({_id: memberId, memberStatus:MemberStatus.ACTIVE}).exec();
+
+      return result
+    }
+
 
 
 
@@ -129,3 +136,7 @@ class MemberService {
 }
 
 export default MemberService
+
+// function ACTIVE(error: CallbackError, result: any): void {
+//     throw new Error("Function not implemented.");
+// }
