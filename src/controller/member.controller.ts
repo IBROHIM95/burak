@@ -4,8 +4,9 @@ import { Member, MemberInput } from '../lips/types/member';
 import MemberService from '../models/Member.service';
 
 import { LoginInput } from '../lips/types/member';
-import Errors from '../lips/Errors';
+import Errors, { HttpCode } from '../lips/Errors';
 import AuthService from '../models/AuthService';
+import { AUTH_TIMER } from '../lips/config';
 
 const memberService = new MemberService();
 const authService = new AuthService
@@ -20,9 +21,14 @@ memberController.signup = async (req:Request, res:Response) => {
         const input: MemberInput = req.body,
            result: Member = await memberService.signup(input),
            token = await authService.createToken(result);
-           //TOKEN
+
+           res.cookie('accessToken', token, {
+            maxAge: AUTH_TIMER * 3600 * 1000,
+            httpOnly: false,
+           });
+           
         
-        res.json({member: result})
+        res.status(HttpCode.CREATED).json({member: result, accessToken: token});
     } catch(err) {
         console.log('error, signup');
         if (err instanceof Errors) res.status(err.code).json(err);
@@ -41,11 +47,17 @@ memberController.login = async (req:Request, res:Response) => {
            result = await memberService.login(input),
            token = await authService.createToken(result);
            console.log('token =>', token);
-           
-        //TOKEN
         console.log('result:', result);
+
+        res.cookie('accessToken', token, {
+            maxAge: AUTH_TIMER * 3600 * 1000,
+            httpOnly: false,
+           });
+           
         
-        res.json({member: result})
+        res.status(HttpCode.CREATED).json({member: result, accessToken: token});
+        
+       
     } catch(err) {
         console.log('Error, Login', err);
         if (err instanceof Errors) res.status(err.code).json(err);

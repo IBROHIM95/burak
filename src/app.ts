@@ -4,7 +4,7 @@ import router from './router'
 import routerAdmin from './routerAdmin';
 import morgan from 'morgan';
 import { MORGAN_FORMAT } from '../src/lips/config';
-
+import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import ConnectMongoDB from 'connect-mongodb-session';
 import { T } from './lips/types/common';
@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public'))); //middle ware folder cl
 app.use(express.urlencoded({extended: true}));  //middleware : traditional API
 app.use(express.json()); //Middleware : Rest API
 app.use(morgan(MORGAN_FORMAT ))
+app.use(cookieParser())
 // 2- qism SESSION
 app.use(
     session({
