@@ -181,16 +181,28 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // const result2 = mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]);
 // console.log(result2); 
 
-function sumOdds(n: number): number {
-    let count = 0;
-    for (let i = 1; i <= n; i += 2) {
-        count++;
-    }
-    return count;
-}
+// function sumOdds(n: number): number {
+//     let count = 0;
+//     for (let i = 1; i <= n; i += 2) {
+//         count++;
+//     }
+//     return count;
+// }
 
-console.log(sumOdds(20)); 
-console.log(sumOdds(40)); 
+// console.log(sumOdds(20)); 
+// console.log(sumOdds(40)); 
+
+function chunkArray<T>(array: T[], size: number): T[][] {
+    const chunkedArray: T[][] = [];
+    for (let i = 0; i < array.length; i += size) {
+        const chunk = array.slice(i, i + size);
+        chunkedArray.push(chunk);
+    }
+    return chunkedArray;
+}
+const result = chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+console.log(result); 
+
 
 
 
