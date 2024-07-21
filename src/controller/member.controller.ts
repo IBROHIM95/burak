@@ -4,7 +4,7 @@ import { Member, MemberInput } from '../lips/types/member';
 import MemberService from '../models/Member.service';
 
 import { LoginInput } from '../lips/types/member';
-import Errors, { HttpCode } from '../lips/Errors';
+import Errors, { HttpCode, Message } from '../lips/Errors';
 import AuthService from '../models/AuthService';
 import { AUTH_TIMER } from '../lips/config';
 
@@ -64,8 +64,29 @@ memberController.login = async (req:Request, res:Response) => {
         else res.status(Errors.standard.code).json(Errors.standard)
         
     }
+}
+
+    memberController.verifyAuth = async (req:Request, res:Response) => {
+      try{
+       let member = null;
+       const token = req.cookies['accessToken'];
+       if(token) member = await authService.checkAuth(token)
+
+        if(!member) 
+            throw new Errors(HttpCode.UNAUTHORIZED, Message.NOT_AUTHENTICATED)
+         console.log('member:', member);
+         
+        res.status(HttpCode.CREATED).json({member: member});
+      }
+      catch(err){
+        console.log('Error, verifyAuth', err);
+        if (err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standard.code).json(Errors.standard)
+        
+      }
+    }
     
-};
+
 
 export default memberController
 
