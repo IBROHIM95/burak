@@ -5,6 +5,7 @@ import { HttpCode } from "../lips/Errors";
 import { MemberStatus, MemberType } from "../lips/enum/member.enum";
 import * as bcrypt from 'bcryptjs'
 import { shapeIntMongooseObjectId } from "../lips/config";
+import { exec } from "pkg";
 
 class MemberService {
     private readonly memberModel;
@@ -79,6 +80,20 @@ class MemberService {
       return result
     
   }
+
+  public async getTopUsers(): Promise<Member[]> {
+    const result = await this.memberModel
+    .find({
+      memberStatus: MemberStatus.ACTIVE,
+      memberPoints: {$gte: 1}, 
+    })
+    .sort({memberPoints: -1})
+    .limit(4)
+    .exec();
+    if(!result) throw new Errors(HttpCode.NOT_FOUNT, Message.NO_DATA_FOUND);
+
+    return result
+ } 
 
 
 
