@@ -3,6 +3,7 @@ const router = express.Router();
 import memberController from '../src/controller/member.controller';
 import uploader from './lips/utils/uploader'
 
+router.get('/member/restaurant', memberController.getRestaurant);
 router
 .post('/member/login', memberController.login);
 router

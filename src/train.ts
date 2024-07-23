@@ -192,16 +192,39 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // console.log(sumOdds(20)); 
 // console.log(sumOdds(40)); 
 
-function chunkArray<T>(array: T[], size: number): T[][] {
-    const chunkedArray: T[][] = [];
-    for (let i = 0; i < array.length; i += size) {
-        const chunk = array.slice(i, i + size);
-        chunkedArray.push(chunk);
+// function chunkArray<T>(array: T[], size: number): T[][] {
+//     const chunkedArray: T[][] = [];
+//     for (let i = 0; i < array.length; i += size) {
+//         const chunk = array.slice(i, i + size);
+//         chunkedArray.push(chunk);
+//     }
+//     return chunkedArray;
+// }
+// const result = chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
+// console.log(result); 
+
+function countOccurrences(obj: any, key: string): number {
+    let count = 0;
+
+    function recursiveCount(currentObj: any) {
+        if (typeof currentObj === 'object' && currentObj !== null) {
+            for (let k in currentObj) {
+                if (k === key) {
+                    count++;
+                }
+                if (typeof currentObj[k] === 'object' && currentObj[k] !== null) {
+                    recursiveCount(currentObj[k]);
+                }
+            }
+        }
     }
-    return chunkedArray;
+
+    recursiveCount(obj);
+    return count;
 }
-const result = chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
-console.log(result); 
+
+const obj = {model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}};
+console.log(countOccurrences(obj, 'model')); 
 
 
 
