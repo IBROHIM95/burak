@@ -21,6 +21,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public'))); //middle ware folder client(BROWSER)
 app.use(express.urlencoded({extended: true}));  //middleware : traditional API
 app.use(express.json()); //Middleware : Rest API
+app.use('/uploads', express.static('./uploads'))
 app.use(morgan(MORGAN_FORMAT ))
 app.use(cookieParser())
 // 2- qism SESSION
