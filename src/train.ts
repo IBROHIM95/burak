@@ -236,7 +236,7 @@ function findIntersection<T>(arr1: T[], arr2: T[]): T[] {
 }
 
 const result = findIntersection([1, 2, 3], [3, 2, 0]);
-console.log(result); // [2, 3]
+console.log(result); 
 
 
 

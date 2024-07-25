@@ -48,6 +48,8 @@ restaurantController.processSignup = async (req:AdminRequest, res:Response) => {
         console.log('req.body', req.body);
         
         const file = req.file;
+        console.log(file);
+        
         if(!file)
             throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG)
 
@@ -58,13 +60,14 @@ restaurantController.processSignup = async (req:AdminRequest, res:Response) => {
         newMember.memberType = MemberType.RESTAURANT;
         const result = await memberService.processSignup(newMember);
         
-
+         console.log('signup',result);
+         
         req.session.member = result;
         req.session.save(function () {
             res.redirect('/admin/product/all') 
         })   
     } catch(err) {
-        res.send(err);
+        // res.send(err);
         const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG
         res.send(` <script> alert("${message}"); window.location.replace('/admin/signup')</script> `); 
         

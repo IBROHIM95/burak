@@ -119,6 +119,7 @@ class MemberService {
         const salt = await bcrypt.genSalt();
         input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
         console.log('after:', input.memberPassword);
+        console.log('proceesservice');
         
         try{
             const result = await this.memberModel.create(input);
