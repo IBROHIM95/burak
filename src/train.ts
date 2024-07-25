@@ -1,13 +1,13 @@
-function getDigits(numbers: any) {
-    let result = '';
-    for (let i = 0; i < numbers.length; i++) {
-        if (!isNaN(numbers[i]) && numbers[i] !== ' ') {
-              result += numbers[i];
-        }
-    }
-   return result;
-}
-console.log(getDigits("m14i1t")); 
+// function getDigits(numbers: any) {
+//     let result = '';
+//     for (let i = 0; i < numbers.length; i++) {
+//         if (!isNaN(numbers[i]) && numbers[i] !== ' ') {
+//               result += numbers[i];
+//         }
+//     }
+//    return result;
+// }
+// console.log(getDigits("m14i1t")); 
 
 /* Project Standarts:
 -Logging standarts
@@ -25,24 +25,24 @@ Naming standarts:
 
 */
 
-function majorityElement(nums: number[]): number | null {
+// function majorityElement(nums: number[]): number | null {
    
-    const counts: { [key: number]: number } = {};
-    for (let result of nums) {
-        counts[result] = (counts[result] || 0) + 1;
-    }
-    let maxCount = 0;
-    let findElement: number | null = null;
+//     const counts: { [key: number]: number } = {};
+//     for (let result of nums) {
+//         counts[result] = (counts[result] || 0) + 1;
+//     }
+//     let maxCount = 0;
+//     let findElement: number | null = null;
 
-    for (let result in counts) {
-        if (counts[result] > maxCount) {
-            maxCount = counts[result];
-            findElement = parseInt(result);
-        }
-    }  
-    return findElement;
-}
-console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
+//     for (let result in counts) {
+//         if (counts[result] > maxCount) {
+//             maxCount = counts[result];
+//             findElement = parseInt(result);
+//         }
+//     }  
+//     return findElement;
+// }
+// console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 
 
 
@@ -203,32 +203,40 @@ console.log(majorityElement([1, 2, 3, 4, 5, 4, 3, 4])); // 4
 // const result = chunkArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3);
 // console.log(result); 
 
-function countOccurrences(obj: any, key: string): number {
-    let count = 0;
+// function countOccurrences(obj: any, key: string): number {
+//     let count = 0;
 
-    function recursiveCount(currentObj: any) {
-        if (typeof currentObj === 'object' && currentObj !== null) {
-            for (let k in currentObj) {
-                if (k === key) {
-                    count++;
-                }
-                if (typeof currentObj[k] === 'object' && currentObj[k] !== null) {
-                    recursiveCount(currentObj[k]);
-                }
-            }
-        }
-    }
+//     function recursiveCount(currentObj: any) {
+//         if (typeof currentObj === 'object' && currentObj !== null) {
+//             for (let k in currentObj) {
+//                 if (k === key) {
+//                     count++;
+//                 }
+//                 if (typeof currentObj[k] === 'object' && currentObj[k] !== null) {
+//                     recursiveCount(currentObj[k]);
+//                 }
+//             }
+//         }
+//     }
 
-    recursiveCount(obj);
-    return count;
+//     recursiveCount(obj);
+//     return count;
+// }
+
+// const obj = {model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}};
+// console.log(countOccurrences(obj, 'model')); 
+
+
+
+function findIntersection<T>(arr1: T[], arr2: T[]): T[] {
+    const set1 = new Set(arr1);
+    const set2 = new Set(arr2);
+    const intersection = [...set1].filter(item => set2.has(item));
+    return intersection;
 }
 
-const obj = {model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}};
-console.log(countOccurrences(obj, 'model')); 
-
-
-
-
+const result = findIntersection([1, 2, 3], [3, 2, 0]);
+console.log(result); // [2, 3]
 
 
 
