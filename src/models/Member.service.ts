@@ -5,7 +5,7 @@ import { HttpCode } from "../lips/Errors";
 import { MemberStatus, MemberType } from "../lips/enum/member.enum";
 import * as bcrypt from 'bcryptjs'
 import { shapeIntMongooseObjectId } from "../lips/config";
-import { exec } from "pkg";
+
 
 class MemberService {
     private readonly memberModel;
