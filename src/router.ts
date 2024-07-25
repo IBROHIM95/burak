@@ -23,10 +23,12 @@ router.post('/member/update',
 router.get('/member/top-users', memberController.getTopUsers);
 
 
-//*PRODUCT *//
-//paramslar slash va 2 nuqta bilan yaratilinadi, 
-//query so'roq belgisi bilan va & belgisi bilan yana query qo'shiladi
+//*PRODUCT //paramslar slash va 2 nuqta bilan yaratilinadi, 
+//query so'roq belgisi bilan va & belgisi bilan yana query qo'shiladi *//
+
 router.get('/product/all', productController.getProducts);  
+router.get('/product/:id', 
+        memberController.retrieveAuth ,productController.getProduct);  
 
 
 

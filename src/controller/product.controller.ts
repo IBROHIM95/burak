@@ -2,7 +2,7 @@ import express, {Request, Response} from 'express';
 import Errors, { HttpCode, Message } from "../lips/Errors";
 import { T } from "../lips/types/common";
 import ProductService from '../models/Product.service';
-import { AdminRequest } from '../lips/types/member';
+import { AdminRequest, ExtendedRequest } from '../lips/types/member';
 import { ProductInput, ProductInquery } from '../lips/types/product';
 import { ProductCollection } from '../lips/enum/product.enum';
 
@@ -36,6 +36,24 @@ productController.getProducts= async (req: Request, res:Response) => {
         res.status(HttpCode.OK).json(result )
     } catch(err) {
         console.log('error, getProducts');
+        if (err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standard.code).json(Errors.standard)    
+    }
+    
+};
+
+productController.getProduct= async (req: ExtendedRequest, res:Response) => {
+    try{
+        console.log('getProducts');
+        const {id} = req.params;
+        const memberId = req.member?._id ?? null
+        
+        const result = await productService.getProduct(memberId, id)
+        
+               
+        res.status(HttpCode.OK).json(result )
+    } catch(err) {
+        console.log('error, getProduct');
         if (err instanceof Errors) res.status(err.code).json(err);
         else res.status(Errors.standard.code).json(Errors.standard)    
     }

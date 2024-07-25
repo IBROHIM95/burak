@@ -5,6 +5,7 @@ import { Message } from "../lips/Errors"
 import { shapeIntMongooseObjectId } from "../lips/config"
 import { ProductStatus } from "../lips/enum/product.enum"
 import { T } from "../lips/types/common"
+import {ObjectId} from 'mongoose'
 
 class ProductService{
 private readonly productModel
@@ -40,6 +41,22 @@ public async  getProducts(inquiry: ProductInquery): Promise<Product[]>{
       if (!result) throw new Errors(HttpCode.NOT_FOUNT, Message.NO_DATA_FOUND);
 
       return result
+}
+
+public async getProduct(memberId: ObjectId | null, id:string): Promise<Product>{
+    const productId = shapeIntMongooseObjectId(id);
+
+    let result = await this.productModel
+    .findOne({
+        _id: productId,
+        productStatus: ProductStatus.PROCESS,
+    })
+    .exec();
+    if (!result) throw new Errors(HttpCode.NOT_FOUNT, Message.NO_DATA_FOUND);
+
+    //TODO If authenticated users => first => view log creation
+
+    return result
 }
 
 /**SSR */
