@@ -1,8 +1,10 @@
 import Errors, { HttpCode } from "../lips/Errors"
-import { Product, ProductInput, ProductUpdateInput } from "../lips/types/product"
+import { Product, ProductInput, ProductInquery, ProductUpdateInput } from "../lips/types/product"
 import ProductModel from "../scheme/Product.model"
 import { Message } from "../lips/Errors"
 import { shapeIntMongooseObjectId } from "../lips/config"
+import { ProductStatus } from "../lips/enum/product.enum"
+import { T } from "../lips/types/common"
 
 class ProductService{
 private readonly productModel
@@ -12,6 +14,33 @@ constructor() {
 }
 
 /**SPA */
+
+public async  getProducts(inquiry: ProductInquery): Promise<Product[]>{
+    const match: T = {productStatus: ProductStatus.PROCESS};
+
+    if (inquiry.productCollection)
+      match.productCollection = inquiry.productCollection;
+    if (inquiry.search) {
+        match.productName = {$regex: new RegExp(inquiry.search, 'i')}
+    }
+
+    const sort: T = 
+     inquiry.order === 'productPrice'
+      ? {[inquiry.order]: 1}
+      : {[inquiry.order]: -1};
+
+      const result = await this.productModel
+      .aggregate([
+        {$match: match},
+        {$sort: sort},
+        {$skip: (inquiry.page * 1 - 1) * inquiry.limit},
+        { $limit: inquiry.limit * 1}
+      ])
+      .exec();
+      if (!result) throw new Errors(HttpCode.NOT_FOUNT, Message.NO_DATA_FOUND);
+
+      return result
+}
 
 /**SSR */
 
