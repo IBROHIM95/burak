@@ -2,7 +2,7 @@ import mongoose, {Schema} from "mongoose";
 import {  OrderStatus } from "../lips/enum/order.enums";
 
 const OrderSchema = new Schema ({
-    orderTotals: {
+    orderTotal: {
         type: Number,
         required : true,
     },
@@ -28,6 +28,6 @@ const OrderSchema = new Schema ({
 { timestamps:true}
 );
 
-export default mongoose.model('Product', OrderSchema )
+export default mongoose.model('Order', OrderSchema )
 
 
