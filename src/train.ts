@@ -228,15 +228,32 @@ Naming standarts:
 
 
 
-function findIntersection<T>(arr1: T[], arr2: T[]): T[] {
-    const set1 = new Set(arr1);
-    const set2 = new Set(arr2);
-    const intersection = [...set1].filter(item => set2.has(item));
-    return intersection;
+// function findIntersection<T>(arr1: T[], arr2: T[]): T[] {
+//     const set1 = new Set(arr1);
+//     const set2 = new Set(arr2);
+//     const intersection = [...set1].filter(item => set2.has(item));
+//     return intersection;
+// }
+
+// const result = findIntersection([1, 2, 3], [3, 2, 0]);
+// console.log(result); 
+
+function randomBetween(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const result = findIntersection([1, 2, 3], [3, 2, 0]);
-console.log(result); 
+const randomNum = randomBetween(30, 50);
+console.log(randomNum); 
+
+function sumEvens(numbers: number[]): number {
+  return numbers
+    .filter(num => num % 2 === 0) 
+    .reduce((sum, num) => sum + num, 0); 
+}
+const result = sumEvens([1, 2, 3]);
+console.log(result); // 2
+
+
 
 
 
