@@ -254,6 +254,13 @@ const result = sumEvens([1, 2, 3]);
 console.log(result); // 2
 
 
+function celsiusToFahrenheit(celsius: number): number {
+  return (celsius * 9/5) + 32;
+}
+console.log(celsiusToFahrenheit(0)); 
+console.log(celsiusToFahrenheit(100)); 
+
+
 
 
 
