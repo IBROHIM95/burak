@@ -260,6 +260,17 @@ function celsiusToFahrenheit(celsius: number): number {
 console.log(celsiusToFahrenheit(0)); 
 console.log(celsiusToFahrenheit(100)); 
 
+function changeNumberInArray(target: number, arr: number[], newNumber: number): number[] {
+  const index = arr.indexOf(target);
+  if (index !== -1) {
+    arr[index] = newNumber;
+  }
+  return arr;
+}
+
+
+const result1 = changeNumberInArray(1, [1, 3, 7, 2], 2);
+console.log(result1); 
 
 
 

@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from  'express'
 import path from 'path';
 import router from './router'
@@ -21,6 +22,12 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public'))); //middle ware folder client(BROWSER)
 app.use(express.urlencoded({extended: true}));  //middleware : traditional API
 app.use(express.json()); //Middleware : Rest API
+app.use(
+    cors({
+        credentials: true,
+        origin: true
+    })
+)
 app.use('/uploads', express.static('./uploads'));
 app.use(morgan(MORGAN_FORMAT ));
 app.use(cookieParser());
