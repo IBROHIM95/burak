@@ -27,7 +27,7 @@ app.use(
         credentials: true,
         origin: true
     })
-)
+);
 app.use('/uploads', express.static('./uploads'));
 app.use(morgan(MORGAN_FORMAT ));
 app.use(cookieParser());

@@ -23,6 +23,8 @@ restaurantController.goHome = (req:Request, res:Response) => {
 
 restaurantController.getSignup = (req:Request, res:Response) => {
     try{
+        console.log('signup');
+        
         res.render('signup')
     } catch(err) {
         console.log('Error, getSignup', err);

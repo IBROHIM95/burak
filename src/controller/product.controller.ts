@@ -15,7 +15,7 @@ const productController: T = {}
 
 productController.getProducts= async (req: Request, res:Response) => {
     try{
-        console.log('getProducts');
+        
 
         const {page, limit, order, productCollection, search } = req.query
         const inquiry: ProductInquery = {
@@ -44,7 +44,7 @@ productController.getProducts= async (req: Request, res:Response) => {
 
 productController.getProduct= async (req: ExtendedRequest, res:Response) => {
     try{
-        console.log('getProducts');
+        
         const {id} = req.params;
         const memberId = req.member?._id ?? null
         
@@ -64,7 +64,7 @@ productController.getProduct= async (req: ExtendedRequest, res:Response) => {
 
 productController.getAllProducts= async (req: Request, res:Response) => {
     try{
-        console.log('getAllProducts');
+        
         const data = await productService.getAllProducts()
         
         
@@ -79,8 +79,8 @@ productController.getAllProducts= async (req: Request, res:Response) => {
 
 productController.createNewProduct= async (req:AdminRequest, res:Response) => {
     try{
-        console.log('createNewProduct');
-        console.log('req.files', req.files);
+        // console.log('createNewProduct');
+        // console.log('req.files', req.files);
         if(!req.files?.length)
             throw new Errors(HttpCode.INTERNAL_SERVER_ERROR, Message.CREATE_FAILED)
         

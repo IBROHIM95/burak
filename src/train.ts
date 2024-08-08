@@ -238,41 +238,63 @@ Naming standarts:
 // const result = findIntersection([1, 2, 3], [3, 2, 0]);
 // console.log(result); 
 
-function randomBetween(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+// function randomBetween(min: number, max: number): number {
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
-const randomNum = randomBetween(30, 50);
-console.log(randomNum); 
+// const randomNum = randomBetween(30, 50);
+// console.log(randomNum); 
 
-function sumEvens(numbers: number[]): number {
-  return numbers
-    .filter(num => num % 2 === 0) 
-    .reduce((sum, num) => sum + num, 0); 
-}
-const result = sumEvens([1, 2, 3]);
-console.log(result); // 2
+// function sumEvens(numbers: number[]): number {
+//   return numbers
+//     .filter(num => num % 2 === 0) 
+//     .reduce((sum, num) => sum + num, 0); 
+// }
+// const result = sumEvens([1, 2, 3]);
+// console.log(result); // 2
 
 
-function celsiusToFahrenheit(celsius: number): number {
-  return (celsius * 9/5) + 32;
-}
-console.log(celsiusToFahrenheit(0)); 
-console.log(celsiusToFahrenheit(100)); 
+// function celsiusToFahrenheit(celsius: number): number {
+//   return (celsius * 9/5) + 32;
+// }
+// console.log(celsiusToFahrenheit(0)); 
+// console.log(celsiusToFahrenheit(100)); 
 
-function changeNumberInArray(target: number, arr: number[], newNumber: number): number[] {
-  const index = arr.indexOf(target);
-  if (index !== -1) {
-    arr[index] = newNumber;
+// function changeNumberInArray(target: number, arr: number[], newNumber: number): number[] {
+//   const index = arr.indexOf(target);
+//   if (index !== -1) {
+//     arr[index] = newNumber;
+//   }
+//   return arr;
+// }
+
+
+// const result1 = changeNumberInArray(1, [1, 3, 7, 2], 2);
+// console.log(result1); 
+
+
+
+
+function removeDuplicate(input: string): string {
+ 
+  const seen = new Set<string>();
+  
+  let result = '';
+
+  
+  for (const char of input) {
+      
+      if (!seen.has(char)) {
+          
+          seen.add(char);
+          result += char;
+      }
   }
-  return arr;
+
+  
+  return result;
 }
 
 
-const result1 = changeNumberInArray(1, [1, 3, 7, 2], 2);
-console.log(result1); 
-
-
-
-
+console.log(removeDuplicate('stringg')); // 'string'
 
