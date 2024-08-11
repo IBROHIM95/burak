@@ -275,26 +275,42 @@ Naming standarts:
 
 
 
-function removeDuplicate(input: string): string {
+// function removeDuplicate(input: string): string {
  
-  const seen = new Set<string>();
+//   const seen = new Set<string>();
   
-  let result = '';
+//   let result = '';
 
   
-  for (const char of input) {
+//   for (const char of input) {
       
-      if (!seen.has(char)) {
+//       if (!seen.has(char)) {
           
-          seen.add(char);
-          result += char;
-      }
-  }
+//           seen.add(char);
+//           result += char;
+//       }
+//   }
 
   
-  return result;
+//   return result;
+// }
+
+
+// console.log(removeDuplicate('stringg')); // 'string'
+
+function capitalizeWords(text: string): string {
+  const words = text.split(' ');
+  const capitalizedWords = words.map(word => {
+      if (word.length <= 2) {
+          return word;
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+
+  return capitalizedWords.join(' ');
 }
 
 
-console.log(removeDuplicate('stringg')); // 'string'
+console.log(capitalizeWords('name should be a string')); // "Name Should be a String"
+
 
