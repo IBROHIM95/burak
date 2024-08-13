@@ -313,4 +313,13 @@ function capitalizeWords(text: string): string {
 
 console.log(capitalizeWords('name should be a string')); // "Name Should be a String"
 
+function convertToSnakeCase(str: string): string {
+  return str
+      .toLowerCase()         
+      .replace(/\s+/g, '_');   
+}
+
+
+console.log(convertToSnakeCase('name should be a string')); 
+ 'name_should_be_a_string'
 
