@@ -323,3 +323,15 @@ function convertToSnakeCase(str: string): string {
 console.log(convertToSnakeCase('name should be a string')); 
  'name_should_be_a_string'
 
+ function delayHelloWorld(message: string): Promise<string> {
+  return new Promise((resolve) => {
+      setTimeout(() => {
+          resolve(message);
+      }, 3000); 
+  });
+}
+
+
+delayHelloWorld("Hello World").then((result) => {
+  console.log(result); 
+});
