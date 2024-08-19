@@ -298,40 +298,55 @@ Naming standarts:
 
 // console.log(removeDuplicate('stringg')); // 'string'
 
-function capitalizeWords(text: string): string {
-  const words = text.split(' ');
-  const capitalizedWords = words.map(word => {
-      if (word.length <= 2) {
-          return word;
-      }
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  });
+// function capitalizeWords(text: string): string {
+//   const words = text.split(' ');
+//   const capitalizedWords = words.map(word => {
+//       if (word.length <= 2) {
+//           return word;
+//       }
+//       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+//   });
 
-  return capitalizedWords.join(' ');
+//   return capitalizedWords.join(' ');
+// }
+
+
+// console.log(capitalizeWords('name should be a string')); // "Name Should be a String"
+
+// function convertToSnakeCase(str: string): string {
+//   return str
+//       .toLowerCase()         
+//       .replace(/\s+/g, '_');   
+// }
+
+
+// console.log(convertToSnakeCase('name should be a string')); 
+//  'name_should_be_a_string'
+
+//  function delayHelloWorld(message: string): Promise<string> {
+//   return new Promise((resolve) => {
+//       setTimeout(() => {
+//           resolve(message);
+//       }, 3000); 
+//   });
+// }
+
+
+// delayHelloWorld("Hello World").then((result) => {
+//   console.log(result); 
+// });
+
+function reduceNestedArray(arr: any[]): number {
+  return arr.reduce((sum, current) => {
+    if (Array.isArray(current)) {
+      return sum + reduceNestedArray(current); 
+    } else if (typeof current === 'number') {
+      return sum + current; 
+    } else {
+      return sum; 
+    }
+  }, 0); 
 }
 
 
-console.log(capitalizeWords('name should be a string')); // "Name Should be a String"
-
-function convertToSnakeCase(str: string): string {
-  return str
-      .toLowerCase()         
-      .replace(/\s+/g, '_');   
-}
-
-
-console.log(convertToSnakeCase('name should be a string')); 
- 'name_should_be_a_string'
-
- function delayHelloWorld(message: string): Promise<string> {
-  return new Promise((resolve) => {
-      setTimeout(() => {
-          resolve(message);
-      }, 3000); 
-  });
-}
-
-
-delayHelloWorld("Hello World").then((result) => {
-  console.log(result); 
-});
+console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
