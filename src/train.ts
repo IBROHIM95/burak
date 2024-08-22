@@ -336,17 +336,32 @@ Naming standarts:
 //   console.log(result); 
 // });
 
-function reduceNestedArray(arr: any[]): number {
-  return arr.reduce((sum, current) => {
-    if (Array.isArray(current)) {
-      return sum + reduceNestedArray(current); 
-    } else if (typeof current === 'number') {
-      return sum + current; 
-    } else {
-      return sum; 
-    }
-  }, 0); 
+// function reduceNestedArray(arr: any[]): number {
+//   return arr.reduce((sum, current) => {
+//     if (Array.isArray(current)) {
+//       return sum + reduceNestedArray(current); 
+//     } else if (typeof current === 'number') {
+//       return sum + current; 
+//     } else {
+//       return sum; 
+//     }
+//   }, 0); 
+// }
+
+
+// console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
+
+function printNumbers() {
+  let count = 1;
+  const intervalId = setInterval(() => {
+      console.log(count);
+      count++;
+      if (count > 5) {
+          clearInterval(intervalId);
+      }
+  }, 1000);
 }
 
+// Funksiyani chaqiramiz
+printNumbers();
 
-console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
