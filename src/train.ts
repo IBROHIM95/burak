@@ -351,17 +351,28 @@ Naming standarts:
 
 // console.log(reduceNestedArray([1, [1, 2, [4]]])); // 8
 
-function printNumbers() {
-  let count = 1;
-  const intervalId = setInterval(() => {
-      console.log(count);
-      count++;
-      if (count > 5) {
-          clearInterval(intervalId);
-      }
-  }, 1000);
-}
+// function printNumbers() {
+//   let count = 1;
+//   const intervalId = setInterval(() => {
+//       console.log(count);
+//       count++;
+//       if (count > 5) {
+//           clearInterval(intervalId);
+//       }
+//   }, 1000);
+// }
 
-// Funksiyani chaqiramiz
-printNumbers();
+// // Funksiyani chaqiramiz
+// printNumbers();
+
+function stringToKebab(str: string): string {
+  return str
+      .replace(/\s+/g, '-')       
+      .replace(/[A-Z]/g, (match) => match.toLowerCase()) 
+      .replace(/[^a-zA-Z0-9\-]/g, '') 
+      .replace(/--+/g, '-')        
+      .trim();                      
+}
+console.log(stringToKebab("I love Kebab")); // Natija: "i-love-kebab"
+
 
