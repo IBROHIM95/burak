@@ -376,3 +376,10 @@ function stringToKebab(str: string): string {
 console.log(stringToKebab("I love Kebab")); // Natija: "i-love-kebab"
 
 
+function reverseInteger(num: number): number {
+  const reversedString = num.toString().split('').reverse().join('');
+  return parseInt(reversedString, 10);
+}
+
+// Misol uchun
+console.log(reverseInteger(123456789)); // 987654321
