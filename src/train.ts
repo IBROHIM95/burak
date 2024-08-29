@@ -383,3 +383,13 @@ function reverseInteger(num: number): number {
 
 // Misol uchun
 console.log(reverseInteger(123456789)); // 987654321
+
+
+function rotateArray<T>(arr: T[], index: number): T[] {
+  
+  return arr.slice(-index).concat(arr.slice(0, -index));
+}
+
+
+const result = rotateArray([1, 2, 3, 4, 5, 6], 2);
+console.log(result);  // Output: [5, 6, 1, 2, 3, 4]
