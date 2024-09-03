@@ -365,31 +365,73 @@ Naming standarts:
 // // Funksiyani chaqiramiz
 // printNumbers();
 
-function stringToKebab(str: string): string {
-  return str
-      .replace(/\s+/g, '-')       
-      .replace(/[A-Z]/g, (match) => match.toLowerCase()) 
-      .replace(/[^a-zA-Z0-9\-]/g, '') 
-      .replace(/--+/g, '-')        
-      .trim();                      
-}
-console.log(stringToKebab("I love Kebab")); // Natija: "i-love-kebab"
+// function stringToKebab(str: string): string {
+//   return str
+//       .replace(/\s+/g, '-')       
+//       .replace(/[A-Z]/g, (match) => match.toLowerCase()) 
+//       .replace(/[^a-zA-Z0-9\-]/g, '') 
+//       .replace(/--+/g, '-')        
+//       .trim();                      
+// }
+// console.log(stringToKebab("I love Kebab")); // Natija: "i-love-kebab"
 
 
-function reverseInteger(num: number): number {
-  const reversedString = num.toString().split('').reverse().join('');
-  return parseInt(reversedString, 10);
-}
+// function reverseInteger(num: number): number {
+//   const reversedString = num.toString().split('').reverse().join('');
+//   return parseInt(reversedString, 10);
+// }
 
-// Misol uchun
-console.log(reverseInteger(123456789)); // 987654321
+// // Misol uchun
+// console.log(reverseInteger(123456789)); // 987654321
 
 
-function rotateArray<T>(arr: T[], index: number): T[] {
+// function rotateArray<T>(arr: T[], index: number): T[] {
   
-  return arr.slice(-index).concat(arr.slice(0, -index));
+//   return arr.slice(-index).concat(arr.slice(0, -index));
+// }
+
+
+// const result = rotateArray([1, 2, 3, 4, 5, 6], 2);
+// console.log(result);  // Output: [5, 6, 1, 2, 3, 4]
+
+function areParenthesesBalanced(input: string): boolean {
+  let balance = 0;
+
+  for (let char of input) {
+      if (char === '(') {
+          balance++;
+      } else if (char === ')') {
+          balance--;
+      }
+
+      if (balance < 0) {
+          return false;
+      }
+  }
+
+  return balance === 0;
 }
 
+// Misol:
+console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda")); // true
+console.log(areParenthesesBalanced("string(ichida(qavslar)soni(balansda)emas")); // false
 
-const result = rotateArray([1, 2, 3, 4, 5, 6], 2);
-console.log(result);  // Output: [5, 6, 1, 2, 3, 4]
+function findDuplicates(arr: number[]): number[] {
+  const countMap: { [key: number]: number } = {};
+  const duplicates: number[] = [];
+
+  for (let num of arr) {
+      countMap[num] = (countMap[num] || 0) + 1;
+  }
+
+  for (let num in countMap) {
+      if (countMap[num] === 2) {
+          duplicates.push(Number(num));
+      }
+  }
+
+  return duplicates;
+}
+
+// Misol:
+console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
