@@ -394,44 +394,68 @@ Naming standarts:
 // const result = rotateArray([1, 2, 3, 4, 5, 6], 2);
 // console.log(result);  // Output: [5, 6, 1, 2, 3, 4]
 
-function areParenthesesBalanced(input: string): boolean {
-  let balance = 0;
+// function areParenthesesBalanced(input: string): boolean {
+//   let balance = 0;
 
-  for (let char of input) {
-      if (char === '(') {
-          balance++;
-      } else if (char === ')') {
-          balance--;
-      }
+//   for (let char of input) {
+//       if (char === '(') {
+//           balance++;
+//       } else if (char === ')') {
+//           balance--;
+//       }
 
-      if (balance < 0) {
-          return false;
-      }
-  }
+//       if (balance < 0) {
+//           return false;
+//       }
+//   }
 
-  return balance === 0;
+//   return balance === 0;
+// }
+
+// // Misol:
+// console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda")); // true
+// console.log(areParenthesesBalanced("string(ichida(qavslar)soni(balansda)emas")); // false
+
+// function findDuplicates(arr: number[]): number[] {
+//   const countMap: { [key: number]: number } = {};
+//   const duplicates: number[] = [];
+
+//   for (let num of arr) {
+//       countMap[num] = (countMap[num] || 0) + 1;
+//   }
+
+//   for (let num in countMap) {
+//       if (countMap[num] === 2) {
+//           duplicates.push(Number(num));
+//       }
+//   }
+
+//   return duplicates;
+// }
+
+// // Misol:
+// console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
+
+function countNumberAndLetters(input: string): { number: number; letter: number } {
+    
+    let numberCount = 0;
+    let letterCount = 0;
+    for (const char of input) {
+        if (/\d/.test(char)) {
+           
+            numberCount++;
+        } else if (/[a-zA-Z]/.test(char)) {
+           
+            letterCount++;
+        }
+    }
+    return {
+        number: numberCount,
+        letter: letterCount
+    };
 }
 
-// Misol:
-console.log(areParenthesesBalanced("string()ichida(qavslar)soni()balansda")); // true
-console.log(areParenthesesBalanced("string(ichida(qavslar)soni(balansda)emas")); // false
 
-function findDuplicates(arr: number[]): number[] {
-  const countMap: { [key: number]: number } = {};
-  const duplicates: number[] = [];
+const result = countNumberAndLetters("string152%¥");
+console.log(result); // { number: 3, letter: 6 }
 
-  for (let num of arr) {
-      countMap[num] = (countMap[num] || 0) + 1;
-  }
-
-  for (let num in countMap) {
-      if (countMap[num] === 2) {
-          duplicates.push(Number(num));
-      }
-  }
-
-  return duplicates;
-}
-
-// Misol:
-console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
