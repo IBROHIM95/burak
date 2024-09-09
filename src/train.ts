@@ -436,26 +436,45 @@ Naming standarts:
 // // Misol:
 // console.log(findDuplicates([1, 2, 3, 4, 5, 4, 3, 4])); // [3, 4]
 
-function countNumberAndLetters(input: string): { number: number; letter: number } {
+// function countNumberAndLetters(input: string): { number: number; letter: number } {
     
-    let numberCount = 0;
-    let letterCount = 0;
-    for (const char of input) {
-        if (/\d/.test(char)) {
+//     let numberCount = 0;
+//     let letterCount = 0;
+//     for (const char of input) {
+//         if (/\d/.test(char)) {
            
-            numberCount++;
-        } else if (/[a-zA-Z]/.test(char)) {
+//             numberCount++;
+//         } else if (/[a-zA-Z]/.test(char)) {
            
-            letterCount++;
+//             letterCount++;
+//         }
+//     }
+//     return {
+//         number: numberCount,
+//         letter: letterCount
+//     };
+// }
+
+
+// const result = countNumberAndLetters("string152%¥");
+// console.log(result); // { number: 3, letter: 6 }
+
+function singleNumber(nums: number[]): number | null {
+    const countMap = new Map<number, number>();
+    for (const num of nums) {
+        if (countMap.has(num)) {
+            countMap.set(num, countMap.get(num)! + 1);
+        } else {
+            countMap.set(num, 1);
         }
     }
-    return {
-        number: numberCount,
-        letter: letterCount
-    };
+    for (const [num, count] of countMap.entries()) {
+        if (count === 1) {
+            return num;
+        }
+    }
+    return null;
 }
 
-
-const result = countNumberAndLetters("string152%¥");
-console.log(result); // { number: 3, letter: 6 }
-
+// Misol
+console.log(singleNumber([4, 2, 1, 2, 1])); // 4
