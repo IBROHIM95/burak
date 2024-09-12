@@ -478,3 +478,26 @@ function singleNumber(nums: number[]): number | null {
 
 // Misol
 console.log(singleNumber([4, 2, 1, 2, 1])); // 4
+
+
+function firstUniqueCharIndex(s: string): number {
+    const charCount: { [key: string]: number } = {};
+
+    for (let char of s) {
+        charCount[char] = (charCount[char] || 0) + 1;
+    }
+    for (let i = 0; i < s.length; i++) {
+        if (charCount[s[i]] === 1) {
+            return i;
+        }
+    }
+
+    // Agar barcha harflar takrorlansa, -1 qaytaramiz
+    return -1;
+}
+
+// Test
+console.log(firstUniqueCharIndex("stamp")); // 0 qaytadi
+console.log(firstUniqueCharIndex("google")); // 4 qaytadi
+console.log(firstUniqueCharIndex("aabbcc")); // -1 qaytadi
+
