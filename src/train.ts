@@ -501,3 +501,22 @@ console.log(firstUniqueCharIndex("stamp")); // 0 qaytadi
 console.log(firstUniqueCharIndex("google")); // 4 qaytadi
 console.log(firstUniqueCharIndex("aabbcc")); // -1 qaytadi
 
+
+
+function sumOfUnique(nums: number[]): number {
+    const countMap: { [key: number]: number } = {};
+    
+    nums.forEach(num => {
+        countMap[num] = (countMap[num] || 0) + 1;
+    });
+
+    return nums.reduce((sum, num) => {
+        if (countMap[num] === 1) {
+            return sum + num;
+        }
+        return sum;
+    }, 0);
+}
+
+// Test
+console.log(sumOfUnique([1, 2, 3, 2])); // 4
