@@ -520,3 +520,21 @@ function sumOfUnique(nums: number[]): number {
 
 // Test
 console.log(sumOfUnique([1, 2, 3, 2])); // 4
+
+function areArraysEqual(arr1: number[], arr2: number[]): boolean {
+    
+    const sortedArr1 = arr1.slice().sort((a, b) => a - b);
+    const sortedArr2 = arr2.slice().sort((a, b) => a - b);
+
+    
+    if (sortedArr1.length !== sortedArr2.length) {
+        return false;
+    }
+
+    return sortedArr1.every((value, index) => value === sortedArr2[index]);
+}
+
+
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2])); // true
+console.log(areArraysEqual([1, 2, 3], [3, 1, 2, 1])); // false (Elementlar soni teng emas)
+console.log(areArraysEqual([1, 2, 3], [4, 1, 2])); // false
